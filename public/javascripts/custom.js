@@ -288,7 +288,7 @@ $(document).ready(function() {
 
 
 
-    var socket = io.connect('http://localhost:3000');
+    var socket = io.connect();
     // var socket2 = io.connect('http://localhost:3000');
 
     $('#insertCode input[type="button"]').click(function() {
