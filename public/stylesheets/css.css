@@ -1,0 +1,208 @@
+body {
+    width: 100%;
+    margin: 0 0;
+}
+
+#wrap {
+    width: 100%;
+    margin: auto;
+    min-height: 637px;
+    position: relative;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: url('../images/background.png');
+    background-repeat: repeat;
+}
+
+@keyframes animatedBackground {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -10000px 0;
+    }
+}
+
+#container #createGame {
+    position: absolute;
+    width: 200px;
+    height: 70px;
+    left: 35%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border: 1.5px solid gray;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+#container #createGame p {
+    margin: 15px 0px;
+    padding: 0 0;
+    font-size: 30px;
+    text-align: center;
+}
+
+#container #joinGame {
+    position: absolute;
+    width: 200px;
+    height: 70px;
+    left: 65%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border: 1.5px solid gray;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+#container #joinGame p {
+    margin: 15px 0px;
+    padding: 0 0;
+    font-size: 30px;
+    text-align: center;
+}
+
+#container #code {
+    display: none;
+    position: absolute;
+    width: 700px;
+    height: 70px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: black;
+}
+
+#container #code p {
+    margin: 15px 0px;
+    padding: 0 0;
+    font-size: 30px;
+    text-align: center;
+}
+
+#container #insertCode {
+    display: none;
+    position: absolute;
+    width: 700px;
+    height: 70px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: black;
+}
+
+#container #insertCode p {
+    margin: 15px 0px;
+    padding: 0 0;
+    font-size: 30px;
+    text-align: center;
+}
+
+#container #insertCode p input[type='text'] {
+    height: 40px;
+    width: 200px;
+    font-size: 30px;
+}
+
+#container #insertCode p input[type='button'] {
+    height: 40px;
+    width: 90px;
+    font-size: 18px;
+    background-color: rgba(0, 255, 0, 0.5);
+    border: none;
+    color: gray;
+}
+
+#container #insertCode p input[type='button']:hover {
+    background-color: rgba(0, 255, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.9);
+    cursor: pointer;
+}
+
+#container #player1 {
+    width: 120px;
+    height: 70px;
+    top: 50%;
+    left: 0;
+    position: absolute;
+    transform: translateY(-50%);
+    display: none;
+    z-index: 11;
+}
+
+#container #player2 {
+    width: 120px;
+    height: 70px;
+    top: 50%;
+    right: 0;
+    position: absolute;
+    transform: translateY(-50%);
+    display: none;
+    z-index: 11;
+}
+
+#container #lifePlayer1 {
+    width: 350px;
+    height: 30px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    border: 2px solid white;
+    display: none;
+    z-index: 10;
+}
+
+#container #lifePlayer2 {
+    width: 350px;
+    height: 30px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    border: 2px solid white;
+    display: none;
+    z-index: 10;
+}
+
+#container .innerLife {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#container .innerLife #life1 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: red;
+    top: 0;
+    left: 0;
+}
+
+#container .innerLife #life2 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: red;
+    top: 0;
+    right: 0;
+}
+
+#container .bullet1 {
+    width: 35px;
+    height: 15px;
+    position: absolute;
+    z-index: 9;
+}
+
+#container .bullet2 {
+    width: 35px;
+    height: 15px;
+    position: absolute;
+    z-index: 9;
+}
