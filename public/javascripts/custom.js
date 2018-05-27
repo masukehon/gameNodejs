@@ -14,6 +14,8 @@ $(document).ready(function() {
     var damage = 20;
     var gameOver = true;
     var player = '';
+    var namePlayer1 = '';
+    var namePlayer2 = '';
 
 
 
@@ -34,7 +36,7 @@ $(document).ready(function() {
 
             var bullet = $("<img/>", {
                 "class": "bullet1",
-                "src": "../images/bullet.png",
+                "src": "../images/bullet-player1.png",
             });
             bullet.css({
                 top: temptTop + "px",
@@ -69,7 +71,7 @@ $(document).ready(function() {
 
             var bullet = $("<img/>", {
                 "class": "bullet2",
-                "src": "../images/bullet.png",
+                "src": "../images/bullet-player2.png",
             });
 
             bullet.css({
@@ -200,8 +202,8 @@ $(document).ready(function() {
             }, 100);
 
             setTimeout(function() {
-                MayBayRoi("player2");
                 gameOver = true;
+                MayBayRoi("player2");
             }, 500);
             clearInterval(checkGameOver);
         }
@@ -216,8 +218,8 @@ $(document).ready(function() {
             }, 100);
 
             setTimeout(function() {
-                MayBayRoi("player1");
                 gameOver = true;
+                MayBayRoi("player1");
             }, 500);
             clearInterval(checkGameOver);
         }
@@ -232,7 +234,11 @@ $(document).ready(function() {
         }, 1500);
 
         setTimeout(function() {
-            alert("Game Over!");
+            if (player == "player1")
+                $('#playerWin').html(namePlayer2);
+            if (player == "player2")
+                $('#playerWin').html(namePlayer1);
+            $('#gameOver').css({ "display": "block", "opacity": 1 }, 500);
         }, 2000);
     }
 
@@ -247,7 +253,7 @@ $(document).ready(function() {
     //nà ní ??
     function MatMau(player) {
         if (gameOver) return;
-        var ratio = 500 / damage;
+        var ratio = lifePlayer1 / damage; // 500/20
         //ratio = 25 viên thì hết máu
 
         var distance = $("#life1").width() / ratio;
@@ -276,13 +282,38 @@ $(document).ready(function() {
     $('#createGame').click(function() {
 
         player = "Player1";
-        socket.emit('createGame', { player: "Player1" });
+        $('#insertNamePlayer1').show();
+        $(this).hide();
+        $('#joinGame').hide();
 
+
+    });
+
+    $('#insertNamePlayer1 input[type="button"]').click(function() {
+        namePlayer1 = $('#insertNamePlayer1 input[type="text"]').val();
+
+        if (namePlayer1 == '') {
+            alert("Bạn phải nhập tên!");
+            return;
+        }
+        socket.emit('createGame', { player: "Player1", namePlayer1: namePlayer1 });
     });
 
     $('#joinGame').click(function() {
         $('#createGame').hide();
         $('#joinGame').hide();
+        $(this).hide();
+        $('#insertNamePlayer2').show();
+    });
+
+    $('#insertNamePlayer2 input[type="button"]').click(function() {
+        namePlayer2 = $('#insertNamePlayer2 input[type="text"]').val();
+
+        if (namePlayer2 == '') {
+            alert("Bạn phải nhập tên!");
+            return;
+        }
+        $('#insertNamePlayer2').hide();
         $('#insertCode').show();
     });
 
@@ -295,7 +326,7 @@ $(document).ready(function() {
 
         var code = $('#insertCode input[type="text"]').val();
 
-        socket.emit('waitForJoinRoom', { code: code });
+        socket.emit('waitForJoinRoom', { code: code, namePlayer2: namePlayer2 });
         player = "Player2";
 
     });
@@ -303,12 +334,15 @@ $(document).ready(function() {
     socket.on('playGame', function(data) {
 
         if (!data.gameOver) {
-
+            namePlayer1 = data.namePlayer1;
+            namePlayer2 = data.namePlayer2;
             gameOver = false;
             $('#player1').show();
             $('#player2').show();
             $('#lifePlayer1').show();
             $('#lifePlayer2').show();
+            $('#namePlayer1').html(namePlayer1);
+            $('#namePlayer2').html(namePlayer2);
             $('#playGame').hide();
             $('#insertCode').hide();
             $('#code').hide();
@@ -318,9 +352,7 @@ $(document).ready(function() {
     });
 
     socket.on('createCode', function(data) {
-
-        $('#createGame').hide();
-        $('#joinGame').hide();
+        $('#insertNamePlayer1').hide();
         $('#code').show();
         if (data) {
             $('#code p:last-child').html(data.code);
@@ -330,7 +362,7 @@ $(document).ready(function() {
     });
 
     $(document).keydown(function(e) {
-
+        if (gameOver) return;
         socket.emit('playerMove', { key: e.which, player: player });
     });
 

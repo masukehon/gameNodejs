@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var io;
 var socket;
 var codeRoom;
+var namePlayer1 = '';
+var namePlayer2 = '';
 
 exports.initGame = function(sio, skt) {
     io = sio;
@@ -13,15 +15,12 @@ exports.initGame = function(sio, skt) {
     socket.on('playerMove', playerMove);
     socket.on('bulleted', bulleted);
 
-    // socket.on('checkBulletedPlayer2', checkBulletedPlayer2);
-    // socket.on('checkBulletedPlayer1', checkBulletedPlayer1);
-
 }
 
 function createGame(data) {
 
     var code = Math.floor((Math.random() * 100000) + 1);
-
+    namePlayer1 = data.namePlayer1;
     socket.emit('createCode', { code: code });
 
     this.join(code);
@@ -36,16 +35,17 @@ function createGame(data) {
 
 function waitForJoinRoom(data) {
 
-    socket.nickname = "Player2";
+    // socket.nickname = "Player2";
     socket.join(data.code);
     var numClients = 0;
+    namePlayer2 = data.namePlayer2;
 
     //code dưới lấy được số người đã kết nối vào room
     io.of('/').in(data.code).clients(function(error, clients) {
         numClients = clients.length;
         if (numClients == 2) {
             console.log('ok');
-            io.sockets.in(data.code).emit('playGame', { gameOver: false });
+            io.sockets.in(data.code).emit('playGame', { gameOver: false, namePlayer1: namePlayer1, namePlayer2: namePlayer2 });
             codeRoom = data.code;
             console.log('ok');
 

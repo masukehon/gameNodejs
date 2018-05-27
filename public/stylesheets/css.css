@@ -96,20 +96,26 @@ body {
     color: black;
 }
 
-#container #insertCode p {
+#container #insertCode p,
+#container #insertNamePlayer1 p,
+#container #insertNamePlayer2 p {
     margin: 15px 0px;
     padding: 0 0;
     font-size: 30px;
     text-align: center;
 }
 
-#container #insertCode p input[type='text'] {
+#container #insertCode p input[type='text'],
+#container #insertNamePlayer1 p input[type='text'],
+#container #insertNamePlayer2 p input[type='text'] {
     height: 40px;
     width: 200px;
     font-size: 30px;
 }
 
-#container #insertCode p input[type='button'] {
+#container #insertCode p input[type='button'],
+#container #insertNamePlayer1 p input[type='button'],
+#container #insertNamePlayer2 p input[type='button'] {
     height: 40px;
     width: 90px;
     font-size: 18px;
@@ -118,10 +124,24 @@ body {
     color: gray;
 }
 
-#container #insertCode p input[type='button']:hover {
+#container #insertCode p input[type='button']:hover,
+#container #insertNamePlayer1 p input[type='button']:hover,
+#container #insertNamePlayer2 p input[type='button']:hover {
     background-color: rgba(0, 255, 0, 0.7);
     border: 1px solid rgba(0, 255, 0, 0.9);
     cursor: pointer;
+}
+
+#container #insertNamePlayer1,
+#container #insertNamePlayer2 {
+    display: none;
+    position: absolute;
+    width: 700px;
+    height: 70px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: black;
 }
 
 #container #player1 {
@@ -193,6 +213,28 @@ body {
     right: 0;
 }
 
+#container .innerLife #namePlayer1 {
+    position: absolute;
+    color: aliceblue;
+    font-size: 27px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    margin: 0 0;
+    z-index: 11;
+}
+
+#container .innerLife #namePlayer2 {
+    position: absolute;
+    color: aliceblue;
+    font-size: 27px;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    margin: 0 0;
+    z-index: 11;
+}
+
 #container .bullet1 {
     width: 35px;
     height: 15px;
@@ -205,4 +247,29 @@ body {
     height: 15px;
     position: absolute;
     z-index: 9;
+}
+
+#container #gameOver {
+    display: none;
+    position: absolute;
+    width: 350px;
+    height: 200px;
+    left: 50%;
+    top: 50%;
+    background-color: black;
+    transform: translateX(-50%) translateY(-50%);
+    border: 1.5px solid gray;
+    color: white;
+    text-align: center;
+    opacity: 0;
+}
+
+#container #gameOver p:first-of-type {
+    font-size: 50px;
+    margin-bottom: 25px;
+}
+
+#container #gameOver p:last-of-type {
+    margin: 0 0;
+    font-size: 30px;
 }

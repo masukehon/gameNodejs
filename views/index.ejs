@@ -4,11 +4,13 @@
         <div id="container">
             <div id="lifePlayer1">
                 <div class="innerLife">
+                    <h3 id="namePlayer1"></h3>
                     <div id="life1"></div>
                 </div>
             </div>
             <div id="lifePlayer2">
                 <div class="innerLife">
+                    <h3 id="namePlayer2"></h3>
                     <div id="life2"></div>
                 </div>
             </div>
@@ -23,15 +25,32 @@
                 <p>Join game</p>
             </div>
 
+            <div id="insertNamePlayer1">
+                <p>Nhập tên của bạn:</p>
+                <p><input type="text"></p>
+                <p><input type="button" value="Create"></p>
+            </div>
+
             <div id="code">
                 <p>Gửi mã dưới cho người bạn muốn chơi cùng:</p>
                 <p style="font-weight: 600;font-size:50px;"></p>
+            </div>
+
+            <div id="insertNamePlayer2">
+                <p>Nhập tên của bạn:</p>
+                <p><input type="text"></p>
+                <p><input type="button" value="Join"></p>
             </div>
 
             <div id="insertCode">
                 <p>Nhập mã vào ô dưới:</p>
                 <p><input type="text"></p>
                 <p><input type="button" value="Connect"></p>
+            </div>
+
+            <div id="gameOver">
+                <p>Game Over</p>
+                <p><span id="playerWin"></span> Win :)</p>
             </div>
         </div>
     </div>
